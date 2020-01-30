@@ -1,7 +1,7 @@
 /*
 Author: Haonan Hu
-File: Linked_listTester.cpp
-Date:2/20/2019
+File: Node.h
+Date:1/30/2020
 Brief:File is header file
 */
 #ifndef NODE_H

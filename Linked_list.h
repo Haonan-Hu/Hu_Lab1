@@ -43,35 +43,32 @@ class LinkedList
 	int Length()const;
 	/**
 	* @post insert a new item at the front of list
-	* @param entry, the value of the insert item
+	* @param value of element
 	* @return none
 	*/
 	void Insert(int entry);
 	/**
-	* @pre the entry is in the list
+	* @pre the list is not empty
 	* @post deletes the entry
-	* @param postion,the position that remove a new item
+	* @param the value of element
 	* @return none
 	*/
 	void Delete(int entry);
 	/**
-	* @pre the entry is in the list
-	* @post deletes the entry
-	* @param postion,the position that remove a new item
+	* @pre the list is not empty
+	* @post deletes all duplicates
 	* @return none
 	*/
 	void DeleteDuplicates();
 	/**
-	* @pre the entry is in the list
-	* @post deletes the entry
-	* @param postion,the position that remove a new item
-	* @return none
+	* @post find element in the list
+	* @param value of element
+	* @return true if the element is found in the list
 	*/
 	bool Find(int entry);
 	/**
-	* @pre the entry is in the list
-	* @post deletes the entry
-	* @param postion,the position that remove a new item
+	* @post find the next element value
+	* @param the value of the element
 	* @return none
 	*/
 	void FindNext(int entry);
@@ -81,6 +78,11 @@ class LinkedList
 	* @return the front node pointer
 	*/
 	Node* getFront()const;
+	/**
+	* @pre none
+	* @post print the list
+	* @return
+	*/
 	void print();
 };
 #endif

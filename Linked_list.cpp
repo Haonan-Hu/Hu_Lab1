@@ -21,6 +21,25 @@ LinkedList::~LinkedList() //destructor
 
 }
 
+Node* LinkedList::targetNode(int position)const
+{
+	int index = 1;
+	Node* temp = m_front;
+	if(position > m_length || position < 1)
+	{
+		throw(runtime_error("Invalid Position\n"));
+	}
+	else
+	{
+		while(index != position)
+		{
+			temp = temp->getNext();
+			index++;
+		}
+		return temp;
+	}
+}
+
 bool LinkedList::IsEmpty()const	//check if the linkedlist is empty
 {
 	if(m_front == nullptr)
@@ -40,30 +59,161 @@ int LinkedList::Length()const //get the current length of the link
 
 void LinkedList::Insert(int entry) //insert a new node at given position
 {
-
+	//	Case1: if the list is empty, then just set entry for m_front
+	if(IsEmpty() == true)
+	{
+		m_front = new Node(entry);
+	}
+	//	Case2: add new node at the front of list
+	else
+	{
+		Node* temp = new Node(entry);
+		temp->setNext(m_front);
+		m_front = temp;
+	}
+	m_length++;
 }
 
 void LinkedList::Delete(int entry)
 {
-
+	//	give error message if the list is empty
+	if(IsEmpty() == true)
+	{
+		throw(runtime_error("The list is empty\n"));
+	}
+	else
+	{
+		//	Case1: Only one node in the list and the node needs to be deleted
+		if(m_front->getNext() == nullptr && m_front->getEntry() == entry)
+		{
+			m_front = nullptr;
+		}
+		//	Case2: multiple nodes in the list
+		else
+		{
+			if(m_front->getNext() != nullptr && m_front->getEntry() != entry)
+			{
+				bool flag = false;	// a flag for making sure only one duplicate will be deleted
+				for(int i = m_length; i > 0;i--)	//	Searching target from the back
+				{
+					Node* temp = targetNode(i);
+					if(temp->getEntry() == entry) //	Found target from the back
+					{
+						Node* prevNode = targetNode(i - 1);
+						prevNode->setNext(temp->getNext());
+						temp->setNext(nullptr);
+						delete temp;
+						flag = true;
+					}
+					if(flag) // activate flag if one duplicate deleted
+					{
+						break;
+					}
+				}
+			}
+			else
+			{
+				Node* temp = m_front;
+				m_front = m_front->getNext();
+				delete temp;
+			}
+		}
+		m_length--;
+	}
 }
 
-void LinkedList::DeleteDuplicates(int entry)
+void LinkedList::DeleteDuplicates()
 {
+	if(IsEmpty() == true)
+	{
+		throw(runtime_error("The list is empty\n"));
+	}
+	else
+	{
+		Node* temp1 = m_front;
+		Node* temp2;
+		Node* temp3;
+		while(temp1 != nullptr && temp1->getNext() != nullptr)
+		{
+			temp2 = temp1;
+			while(temp2->getNext() != nullptr)
+			{
+				temp3 = temp2->getNext();
 
+				if(temp1->getEntry() == temp3->getEntry())
+				{
+					Node* dup = temp3;
+					temp2->setNext(temp3->getNext());
+					delete dup;
+					m_length--;
+				}
+				else
+					temp2 = temp2->getNext();
+			}
+			temp1 = temp1->getNext();
+		}
+	}
 }
 
 bool LinkedList::Find(int entry)
 {
-
+	bool found = false;
+	for(int i = m_length; i > 0; i--)
+	{
+		if(targetNode(i)->getEntry() == entry)
+		{
+			found = true;
+		}
+	}
+	return found;
 }
 
 void LinkedList::FindNext(int entry)
 {
-
+	bool check = false;
+	for(int i = 1; i <= m_length; i++)
+	{
+		if(targetNode(i)->getEntry() == entry && targetNode(i)->getNext() == nullptr)
+		{
+			cout << "None\n";
+			check = true;
+		}
+		else if(targetNode(i)->getEntry() == entry)
+		{
+			cout << targetNode(i)->getNext()->getEntry() << " is next after " << entry << '\n';
+			check = true;
+		}
+		if(check)
+		{
+			break;
+		}
+	}
+	if(check == false)
+	{
+		cout << "There is no element " << entry << " in list. Hence there is no next element\n";
+	}
 }
 
-Node LinkedList::getFront()
+Node* LinkedList::getFront()const
 {
-	return *m_front;
+	return m_front;
+}
+
+void LinkedList::print()
+{
+	if(IsEmpty() == true)
+	{
+		cout << "List is empty, cannot print\n";
+	}
+	else
+	{
+		Node* curNode = m_front;
+
+		while (curNode != nullptr)
+		{
+			cout << curNode->getEntry() << "->";
+			curNode = curNode->getNext();
+		}
+	  cout << '\n';
+	}
 }

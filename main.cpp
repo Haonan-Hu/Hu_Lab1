@@ -13,21 +13,7 @@ using namespace std;
 
 int main(int argc, char*argv[ ])
 {
-  string command;
-  command = argv[1];
-  if(command == "-i")
-  {
-    executive exec;
-    exec.run();
-  }
-  if(command == "-t")
-  {
-    LinkedListTester test;
-    test.runTests();
-  }
-  else
-  {
-    cout << "Wrong command\n";
-  }
+  executive exec;
+  exec.run();
   return 0;
 }

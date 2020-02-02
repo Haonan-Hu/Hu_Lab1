@@ -15,6 +15,7 @@ class LinkedList
 	private:
 	Node* m_front;
 	int m_length;
+	Node* targetNode(int position)const;
 
 	public:
 	/**
@@ -59,7 +60,7 @@ class LinkedList
 	* @param postion,the position that remove a new item
 	* @return none
 	*/
-	void DeleteDuplicates(int entry);
+	void DeleteDuplicates();
 	/**
 	* @pre the entry is in the list
 	* @post deletes the entry
@@ -79,6 +80,7 @@ class LinkedList
 	* @post get the front node pointer
 	* @return the front node pointer
 	*/
-	Node getFront();
+	Node* getFront()const;
+	void print();
 };
 #endif

@@ -13,13 +13,6 @@ using namespace std;
 
 void executive::run()
 {
-  // for(int i = 1; i <= 7; i++) //test insert
-  // {
-  //   myList.Insert(i);
-  // }
-  // myList.print();
-
-
   myList.Insert(1);
   myList.Insert(2);
   myList.Insert(23);
@@ -30,15 +23,13 @@ void executive::run()
   myList.Insert(1);
   myList.Insert(2);
   myList.Insert(23);
-  myList.print();
+  myList.Print();
   myList.Delete(23);
-  myList.print();
+  myList.Print();
   myList.Delete(23);
-  myList.print();
-  myList.Delete(23);
-  myList.print();
+  myList.Print();
   myList.DeleteDuplicates();
-  myList.print();
+  myList.Print();
   if(myList.Find(2) == true)
   {
     cout << "Found\n";
@@ -46,4 +37,7 @@ void executive::run()
   myList.FindNext(32);
   myList.FindNext(2);
   myList.FindNext(1);
+  cout << myList.Length() << '\n';
+  myList.ReverseList();
+  myList.PrintAt(4);
 }

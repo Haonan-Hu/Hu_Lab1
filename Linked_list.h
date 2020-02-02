@@ -83,6 +83,18 @@ class LinkedList
 	* @post print the list
 	* @return
 	*/
-	void print();
+	void Print();
+	/**
+	* @pre none
+	* @post print the reversed list
+	* @return
+	*/
+	void ReverseList();
+	/**
+	* @pre position must be valid
+	* @post print element at position
+	* @return
+	*/
+	void PrintAt(int positon);
 };
 #endif

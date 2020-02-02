@@ -157,15 +157,22 @@ void LinkedList::DeleteDuplicates()
 
 bool LinkedList::Find(int entry)
 {
-	bool found = false;
-	for(int i = m_length; i > 0; i--)
+	if(!IsEmpty())
 	{
-		if(targetNode(i)->getEntry() == entry)
+		bool found = false;
+		for(int i = m_length; i > 0; i--)
 		{
-			found = true;
+			if(targetNode(i)->getEntry() == entry)
+			{
+				found = true;
+			}
 		}
+		return found;
 	}
-	return found;
+	else
+	{
+		throw(runtime_error("The list is empty\n"));
+	}
 }
 
 void LinkedList::FindNext(int entry)
@@ -199,11 +206,11 @@ Node* LinkedList::getFront()const
 	return m_front;
 }
 
-void LinkedList::print()
+void LinkedList::Print()
 {
 	if(IsEmpty() == true)
 	{
-		cout << "List is empty, cannot print\n";
+		throw(runtime_error("The list is empty\n"));
 	}
 	else
 	{
@@ -215,5 +222,33 @@ void LinkedList::print()
 			curNode = curNode->getNext();
 		}
 	  cout << '\n';
+	}
+}
+
+void LinkedList::ReverseList()
+{
+	if(!IsEmpty())
+	{
+		for(int i = m_length; i > 0; i--)
+		{
+			cout << targetNode(i)->getEntry() << "->";
+		}
+		cout << '\n';
+	}
+	else
+	{
+		throw(runtime_error("The list is empty\n"));
+	}
+}
+
+void LinkedList::PrintAt(int position)
+{
+	if(position > m_length || position < 1)
+	{
+		throw(runtime_error("Invalid position\n"));
+	}
+	else
+	{
+		cout << "The element at the " << position << "th position is: " << targetNode(position)->getEntry() << '\n';
 	}
 }

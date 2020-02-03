@@ -13,7 +13,14 @@ using namespace std;
 
 int main(int argc, char*argv[ ])
 {
-  executive exec;
-  exec.run();
+  if(argc < 2)
+  {
+    cout << "Wrong number of parameters\n";
+  }
+  else
+  {
+    executive exec(argv[1]);
+    exec.run();
+  }
   return 0;
 }

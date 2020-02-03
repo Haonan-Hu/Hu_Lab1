@@ -15,6 +15,11 @@ class LinkedList
 	private:
 	Node* m_front;
 	int m_length;
+	/**
+	* @pre position must be valid
+	* @post give the node pointer
+	* @return node pointer
+	*/
 	Node* targetNode(int position)const;
 
 	public:
@@ -92,7 +97,7 @@ class LinkedList
 	void ReverseList();
 	/**
 	* @pre position must be valid
-	* @post print element at position
+	* @post print next element at position
 	* @return
 	*/
 	void PrintAt(int positon);

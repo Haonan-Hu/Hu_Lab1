@@ -112,10 +112,112 @@ void executive::run()
     }
     else if(choice == 5) //Delete duplicates from the list
     {
-      myList.DeleteDuplicates();
-      cout << "Duplicates deleted.\n\n";
-      cout << "..................................\n\n";
+      try
+      {
+        myList.DeleteDuplicates();
+        cout << "Duplicates deleted.\n\n";
+        cout << "..................................\n\n";
+      }
+      catch(runtime_error &rte)
+      {
+        cout << rte.what() << '\n';
+        cout << "..................................\n\n";
+      }
+    }
+    else if(choice == 6) // Find element in the list
+    {
+      int entry;
+      cout << "Enter the number to find: \n\n";
+      cin >> entry;
+      cin.ignore();
+      cout << '\n';
+      try
+      {
+        if(myList.Find(entry))
+        {
+          cout << entry << " is in the list.\n\n";
+          cout << "..................................\n\n";
+        }
+        else
+        {
+          cout << entry << " is not found in the list.\n\n";
+          cout << "..................................\n\n";
+        }
+      }
+      catch(runtime_error &rte)
+      {
+        cout << rte.what() << '\n';
+        cout << "..................................\n\n";
+      }
+    }
+    else if(choice == 7)// Find the next element
+    {
+      int entry;
+      cout << "Enter the number to find its next element: \n\n";
+      cin >> entry;
+      cin.ignore();
+      cout << '\n';
+      if(!myList.IsEmpty())
+      {
+        myList.FindNext(entry);
+        cout << "..................................\n\n";
+      }
+      else
+        cout << "The list is Empty.\n\n";
+    }
+    else if(choice == 8) // Print the list
+    {
+      try
+      {
+        myList.Print();
+        cout << "..................................\n\n";
+      }
+      catch(runtime_error &rte)
+      {
+        cout << rte.what() << '\n';
+        cout << "..................................\n\n";
+      }
+    }
+    else if(choice == 9) //Print the Reverse list
+    {
+      try
+      {
+        myList.ReverseList();
+        cout << "..................................\n\n";
+      }
+      catch(runtime_error &rte)
+      {
+        cout << rte.what() << '\n';
+        cout << "..................................\n\n";
+      }
+    }
+    else if(choice == 10) //Print the element at the given position
+    {
+      int position;
+      cout << "Choose a position to print element: \n\n";
+      cin >> position;
+      cin.ignore();
+      cout << '\n';
+      try
+      {
+        myList.PrintAt(position);
+        cout << "..................................\n\n";
+      }
+      catch(runtime_error &rte)
+      {
+        cout << rte.what() << '\n';
+        cout << "..................................\n\n";
+      }
+    }
+    else if(choice == 11)
+    {
+      cout << "Program execution complete!\n";
+      break;
     }
     else
+    {
+      cout << " Wrong input!\n\n";
+      cout << "..................................\n\n";
+    }
   }
 }

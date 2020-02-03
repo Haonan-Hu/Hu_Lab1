@@ -18,7 +18,15 @@ LinkedList::LinkedList()
 
 LinkedList::~LinkedList() //destructor
 {
-
+	Node* deletePtr = m_front;
+	while(m_front != nullptr)
+	{
+		m_front = m_front->getNext();
+		deletePtr->setNext(nullptr);
+		delete deletePtr;
+		deletePtr = m_front;
+	}
+	m_length = 0;
 }
 
 Node* LinkedList::targetNode(int position)const
@@ -27,7 +35,7 @@ Node* LinkedList::targetNode(int position)const
 	Node* temp = m_front;
 	if(position > m_length || position < 1)
 	{
-		throw(runtime_error("Invalid Position\n"));
+		throw(runtime_error("Invalid Position.\n"));
 	}
 	else
 	{
@@ -79,7 +87,7 @@ void LinkedList::Delete(int entry)
 	//	give error message if the list is empty
 	if(IsEmpty() == true)
 	{
-		throw(runtime_error("The list is empty\n"));
+		throw(runtime_error("The list is empty.\n"));
 	}
 	else
 	{
@@ -126,7 +134,7 @@ void LinkedList::DeleteDuplicates()
 {
 	if(IsEmpty() == true)
 	{
-		throw(runtime_error("The list is empty\n"));
+		throw(runtime_error("The list is empty.\n\n"));
 	}
 	else
 	{
@@ -171,7 +179,7 @@ bool LinkedList::Find(int entry)
 	}
 	else
 	{
-		throw(runtime_error("The list is empty\n"));
+		throw(runtime_error("The list is empty.\n\n"));
 	}
 }
 
@@ -182,12 +190,12 @@ void LinkedList::FindNext(int entry)
 	{
 		if(targetNode(i)->getEntry() == entry && targetNode(i)->getNext() == nullptr)
 		{
-			cout << "None\n";
+			cout << "None.\n\n";
 			check = true;
 		}
 		else if(targetNode(i)->getEntry() == entry)
 		{
-			cout << targetNode(i)->getNext()->getEntry() << " is next after " << entry << '\n';
+			cout << targetNode(i)->getNext()->getEntry() << " is next after " << entry << ".\n\n";
 			check = true;
 		}
 		if(check)
@@ -197,7 +205,7 @@ void LinkedList::FindNext(int entry)
 	}
 	if(check == false)
 	{
-		cout << "There is no element " << entry << " in list. Hence there is no next element\n";
+		cout << "There is no element " << entry << " in list. Hence there is no next element.\n\n";
 	}
 }
 
@@ -210,7 +218,7 @@ void LinkedList::Print()
 {
 	if(IsEmpty() == true)
 	{
-		throw(runtime_error("The list is empty\n"));
+		throw(runtime_error("The list is empty.\n\n"));
 	}
 	else
 	{
@@ -221,7 +229,7 @@ void LinkedList::Print()
 			cout << curNode->getEntry() << "->";
 			curNode = curNode->getNext();
 		}
-	  cout << '\n';
+	  cout << "\n\n";
 	}
 }
 
@@ -233,11 +241,11 @@ void LinkedList::ReverseList()
 		{
 			cout << targetNode(i)->getEntry() << "->";
 		}
-		cout << '\n';
+		cout << "\n\n";
 	}
 	else
 	{
-		throw(runtime_error("The list is empty\n"));
+		throw(runtime_error("The list is empty.\n\n"));
 	}
 }
 
@@ -245,10 +253,10 @@ void LinkedList::PrintAt(int position)
 {
 	if(position > m_length || position < 1)
 	{
-		throw(runtime_error("Invalid position\n"));
+		throw(runtime_error("Invalid position.\n\n"));
 	}
 	else
 	{
-		cout << "The element at the " << position << "th position is: " << targetNode(position)->getEntry() << '\n';
+		cout << "The element at the " << position << "th position is: " << targetNode(position)->getEntry() << "\n\n";
 	}
 }

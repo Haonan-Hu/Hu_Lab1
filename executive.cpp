@@ -9,6 +9,7 @@ Brief:File is cpp file
 #include "Linked_list.h"
 #include <stdexcept>
 #include <iostream>
+#include <limits>
 using namespace std;
 
 executive::executive(string fileName)
@@ -44,8 +45,33 @@ void executive::run()
     cout << "   10.Print At\n";
     cout << "   11.Exit \n\n";
     cin >> choice;
-    cin.ignore();
     cout << '\n';
+    while(1)
+    {
+      if(cin.fail())
+      {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        cout << "Wrong input!\n\n";
+        cout << "..................................\n\n";
+        cout << "Choose one operation from the options below: \n\n";
+        cout << "   1. Is Empty\n";
+        cout << "   2. Length\n";
+        cout << "   3. Insert\n";
+        cout << "   4. Delete\n";
+        cout << "   5. Delete Duplicates\n";
+        cout << "   6. Find\n";
+        cout << "   7. Find Next\n";
+        cout << "   8. Print\n";
+        cout << "   9. Reverse List\n";
+        cout << "   10.Print At\n";
+        cout << "   11.Exit \n\n";
+        cin >> choice;
+        cout << '\n';
+      }
+      if(!cin.fail())
+        break;
+    }
     if(choice == 1) //  Checking empty list
     {
       if(myList.IsEmpty() == true)
